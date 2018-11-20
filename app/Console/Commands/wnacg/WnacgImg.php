@@ -57,9 +57,8 @@ class WnacgImg extends Command
         $requests = function ($total) use ($client) {
             foreach ($this->url as $uri) {
                 yield function() use ($client, $uri) {
-                    $this->uri =str_replace("index","gallery",$uri->href);
                     $this->comic_id = $uri->comic_id;
-                    return $client->getAsync( $this->uri);
+                    return $client->getAsync( str_replace("index","gallery",$uri->href));
                 };
             }
         };
@@ -67,7 +66,7 @@ class WnacgImg extends Command
         $pool = new Pool($client, $requests($this->totalPageCount), [
             'concurrency' => $this->concurrency,
             'fulfilled'   => function ($response, $index){
-                echo '爬取'.$this->uri.PHP_EOL;
+                echo '爬取'.str_replace("index","gallery",$this->url[$index]->href).PHP_EOL;
                 $http = $response->getBody()->getContents();
                 $crawler = new Crawler();
                 $crawler->addHtmlContent($http);
@@ -77,7 +76,6 @@ class WnacgImg extends Command
                     $str = str_before($after,'document.writeln("");');
                     $newstr =  str_replace("url: fast_img_host+\\","",$str);
                     $pieces = explode(",", $newstr);
-                    dd($pieces);
                     foreach ($pieces as $key=>$item){
                         if($key%2){
 
