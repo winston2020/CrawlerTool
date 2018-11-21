@@ -53,8 +53,8 @@ class Wnacg extends Command
     public function handle()
     {
         ini_set('memory_limit', '128M');
-        for ($i=0; $i <2989 ; $i++) { 
-            $this->url[] = "https://wnacg.com/albums-index-page-".$i."-cate-5.html";
+        for ($i=0; $i <env('SERIES_PAGE') ; $i++) {
+            $this->url[] = "https://wnacg.com/albums-index-page-".$i."-cate-".env('TYPE').".html";
         }
 
         $this->totalPageCount = 2989;
