@@ -53,7 +53,6 @@ class Wnacg extends Command
     public function handle()
     {
         ini_set('memory_limit', '128M');
-
         for ($i=0; $i <2989 ; $i++) { 
             $this->url[] = "https://wnacg.com/albums-index-page-".$i."-cate-5.html";
         }
@@ -81,7 +80,6 @@ class Wnacg extends Command
                         $data['href'] = 'https://wnacg.com'.$node->filter('li > div.pic_box > a')->attr('href');
                         $data['name'] = $node->filter('li > div.info > div.title > a')->text();
                         $data['comic_img_url'] ='https:'.$node->filter('li > div.pic_box > a > img')->attr('src');
-
                         $data['description'] = '';
                         $data['star_number'] = 5;
                         $data['weekupdate'] = '完结';
@@ -90,7 +88,7 @@ class Wnacg extends Command
                         $data['created_at'] = date('Y-m-d H:i:s');
                         $data['updated_at'] = date('Y-m-d H:i:s');
                         $data['userid'] = 4;
-                        $data['series_id'] = 4;
+                        $data['series_id'] = env('SERIES_ID');
                         return $data;   
                     }); 
                     $bool = DB::table('comic')->insert($arr);

@@ -26,7 +26,7 @@ class WnacgImg extends Command
     protected $signature = 'wnacg:img';
     private $totalPageCount;
     private $counter        = 1;
-    private $concurrency    = 100;  // 同时并发抓取
+    private $concurrency    = 200;  // 同时并发抓取
     /**
      * The console command description.
      *

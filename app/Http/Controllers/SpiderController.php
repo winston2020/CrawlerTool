@@ -150,26 +150,4 @@ class SpiderController extends Controller
             return;
         }
     }
-
-    public function zzz()
-    {
-        $str = '[{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/000.jpg\", caption: \"[000]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/001.jpg\", caption: \"[001]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/002.jpg\", caption: \"[002]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/003.jpg\", caption: \"[003]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/004.jpg\", caption: \"[004]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/005.jpg\", caption: \"[005]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/006.jpg\", caption: \"[006]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/007.jpg\", caption: \"[007]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/008.jpg\", caption: \"[008]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/009.jpg\", caption: \"[009]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/010.jpg\", caption: \"[010]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/011.jpg\", caption: \"[011]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/012.jpg\", caption: \"[012]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/013.jpg\", caption: \"[013]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/014.jpg\", caption: \"[014]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/015.jpg\", caption: \"[015]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/016.jpg\", caption: \"[016]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/017.jpg\", caption: \"[017]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/018.jpg\", caption: \"[018]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/20.jpg\", caption: \"[20]\"},{ url: fast_img_host+\"//img1.wnacg.download/data/0625/39/21.jpg\", caption: \"[21]\"},{ url: fast_img_host+\"/themes/weitu/images/bg/shoucang.jpg\", caption: \"喜歡紳士漫畫的同學請加入收藏哦！\"}]';
-
-
-
-
-        $data = str_after($str,'fast_img_host+\"');
-        $data = str_before($data,'\"');
-        dd($data);
-
-        $crawler = new Crawler();
-        $crawler->addHtmlContent($a);
-        $arr = $crawler->filter('#img_list > div')->each(function ($node,$i) use ($a) {
-            $data['href'] = $node->filter('div > img')->attr('src');
-            $data['created_at'] = date('Y-m-d H:i:s');
-            $data['updated_at'] = date('Y-m-d H:i:s');
-            return $data;
-        });
-        dd($arr);
-    }
 }

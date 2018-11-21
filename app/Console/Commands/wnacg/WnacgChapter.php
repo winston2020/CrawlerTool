@@ -49,10 +49,9 @@ class WnacgChapter extends Command
              $data['href'] = $value->href;
              $data['created_at'] = date('Y-m-d H:i:s');
              $data['updated_at'] = date('Y-m-d H:i:s');
-             $data['mark'] = 1;
+             $data['mark'] = env('MARK');
              $bool = DB::table('comic_chapter')->insert($data);
              $this->info('id=>'.$key.' status=>'.$bool.PHP_EOL);
         }
-
     }
 }
