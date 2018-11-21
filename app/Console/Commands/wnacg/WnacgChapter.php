@@ -40,7 +40,7 @@ class WnacgChapter extends Command
     public function handle()
     {
         ini_set('memory_limit', '1280M');
-        $comic =  Comic::where(['series_id'=>4,'mark'=>1])->get();
+        $comic =  Comic::where(['series_id'=>env('SERIES_ID'),'mark'=>env('MARK')])->get();
         foreach ($comic as $key => $value) {
             # code...
              $data['number'] =1;
