@@ -27,7 +27,7 @@ class Wnacg extends Command
     protected $signature = 'wnacg:comic';
     private $totalPageCount;
     private $counter        = 1;
-    private $concurrency    = 10;  // 同时并发抓取
+    private $concurrency    = 200;  // 同时并发抓取
     /**
      * The console command description.
      *
