@@ -89,6 +89,7 @@ class Wnacg extends Command
                         $data['updated_at'] = date('Y-m-d H:i:s');
                         $data['userid'] = 4;
                         $data['series_id'] = env('SERIES_ID');
+                        $data['mark'] = env('MARK');
                         return $data;   
                     }); 
                     $bool = DB::table('comic')->insert($arr);
