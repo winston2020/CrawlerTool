@@ -26,7 +26,7 @@ class WnacgImg extends Command
     protected $signature = 'wnacg:img';
     private $totalPageCount;
     private $counter        = 1;
-    private $concurrency    = 10;  // 同时并发抓取
+    private $concurrency    = 100;  // 同时并发抓取
     /**
      * The console command description.
      *
@@ -87,16 +87,29 @@ class WnacgImg extends Command
                     array_pop($data);
                     foreach ($data as $key=>$item){
                         $newdata[$key]['comic_img_url'] = $item;
-                        $newdata[$key]['comic_id'] = $item;
+                        $newdata[$key]['comic_id'] = $this->url[$index]->comic_id;
+                        $newdata[$key]['number'] = $key;
+                        $newdata[$key]['chapter_id'] = $this->url[$index]->id;
+                        $newdata[$key]['mark'] = env('MARK');
+                        $newdata[$key]['created_at'] = date('Y-m-d H:i:s');
+                        $newdata[$key]['updated_at'] = date('Y-m-d H:i:s');
                     }
-                    dd($data);
 
-//                    $bool = DB::table('comic')->insert($arr);
-//                    if ($bool){
-//                        echo 'success'.PHP_EOL;
-//                    }else{
-//                        echo 'fail'.PHP_EOL;
-//                    }
+                    try
+                    {
+                        $bool = DB::table('chapter_img')->insert($newdata);
+                        if ($bool){
+                            echo 'success'.PHP_EOL;
+                        }else{
+                            echo 'fail'.PHP_EOL;
+                        }
+                    }
+
+                    catch(\Exception $e)
+                    {
+                        $this->line('id=>'.$this->url[$index]->id,'fail');
+                    }
+
                 }
                 echo $response->getStatusCode().PHP_EOL;
                 $this->countedAndCheckEnded();
