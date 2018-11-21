@@ -60,7 +60,7 @@ class WnacgUpdate extends Command
             $res->mark = env('MARK');
             $bool = $res->save();
             if ($bool){
-                echo 'id=>'.$res->id.' success';
+                echo 'id=>'.$res->id.' success'.PHP_EOL;
             }
         }
     }
