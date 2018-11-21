@@ -55,7 +55,7 @@ class WnacgUpdate extends Command
         ini_set('memory_limit', '128M');
         $comic =  Comic::where(['series_id'=>env('SERIES_ID')])->get();
         foreach ($comic as $key=>$item){
-            $res = new Comic();
+            $res = Comic::find($item->id);
             $res->mark = env('MARK');
             $bool = $res->save();
             if ($bool){
